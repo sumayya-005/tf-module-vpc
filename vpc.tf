@@ -1,3 +1,10 @@
+resource "aws_vpc" "main" {
+  for_each   = var.vpc
+  vpc_cidr   = each.value.cidr_block
+  tags       = local.vpc_tags
+}
+
+
 module "additional_cidr_block" {
   for_each              = var.vpc
   source                = "./additional_vpc_cidr"
@@ -6,5 +13,5 @@ module "additional_cidr_block" {
 }
 
 output "vpc" {
-value = [for k, v in aws_vpc.main : v.id]
+  value = [for k, v in aws_vpc.main : v.id]
 }

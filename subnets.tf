@@ -1,0 +1,4 @@
+module "subnets" {
+  
+  source = "./subnets"
+}
