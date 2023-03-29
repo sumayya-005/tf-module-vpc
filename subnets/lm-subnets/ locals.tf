@@ -1,7 +1,7 @@
 locals {
   subnet_tags  = {
-    Name   =var.name
-    ENV   = var.env
+    Name   = "${var.name}-subnet"
+    ENV    = var.env
     PROJECT = "roboshop"
   }
 }
