@@ -5,5 +5,4 @@ module "lm-subnets" {
   vpc_id      = var.vpc_id[0]
   env         = var.env
   name        =each.value.name
-  subnets_availability_zones = each.value.subnets_availability_zones
 }
