@@ -1,4 +1,5 @@
 resource "aws_vpc_peering_connection" "management-vpc-to-env-vpc" {
-  peer_vpc_id   = aws_vpc.bar.id
+  count         = lenght
+  peer_vpc_id   = lookup(var.management_vpc,"vpc_id", null)
   vpc_id        = element([for k, v in aws_vpc.main : v.id],0)
 }
