@@ -10,8 +10,11 @@ module "lm-subnets" {
 
 resource "aws_route_table" "route_table" {
   for_each = var.subnets
-  vpc_id = var.vpc_id[0]
-  tag ={
-    Name = each.value.name
+  vpc_id   = var.vpc_id[0]
+  tag      = {
+
+    Name    = "${var.env}-${each.value.name}-rt"
+    ENV     = var.env
+    PROJECT = "roboshop"
   }
 }
