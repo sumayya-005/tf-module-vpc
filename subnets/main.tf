@@ -30,3 +30,6 @@ resource "aws_route_table" "route_table" {
 #  value =aws_route_table.aws_route_table
 #}
 
+resource "aws_route" "peering_connection_route" {
+  route_table_id = "aws_route_table.aws_route_table.id
+}
