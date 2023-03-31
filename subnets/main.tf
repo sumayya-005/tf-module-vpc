@@ -20,12 +20,13 @@ resource "aws_route_table" "route_table" {
   }
 }
 
-#output "aws_route_table" {
-#  value = module.lm-subnets
+##output "aws_route_table" {
+##  value = module.lm-subnets
+##}
+#
+##to get the subnet id.
+#
+#output "route-tables" {
+#  value =aws_route_table.aws_route_table
 #}
 
-#to get the subnet id.
-
-output "route-tables" {
-  value =aws_route_table.aws_route_table
-}
