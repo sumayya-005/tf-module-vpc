@@ -20,5 +20,5 @@ resource "aws_nat_gateway" "ngw" {
   tags = {
     Name = "gw NAT"
   }
-
+}
 
