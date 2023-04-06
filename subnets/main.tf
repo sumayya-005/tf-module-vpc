@@ -45,13 +45,17 @@ resource "aws_route" "peering_connection_route" {
 #  vpc_peering_connection_id  = var.peering_connection_id
 #}
 
+locals {
+  subnets_list = flatten([ for i,j in module.lm-subnets: concat(j.subnets)])
+}
 output "subnets" {
-  value = flatten([ for i,j in module.lm-subnets: concat(j.subnets)])
+  value = local.subnets_list[*].id
 }
 
-resource "null_resource" "test" {
-  provisioner "local-exec" {
-    command = "echo ${module.lm-subnets}"
-  }
-}
+
+#resource "null_resource" "test" {
+#  provisioner "local-exec" {
+#    command = "echo ${module.lm-subnets}"
+#  }
+#}
 
