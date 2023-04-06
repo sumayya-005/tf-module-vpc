@@ -5,3 +5,6 @@
 #  value = local.subnets_list[*].id
 #}
 
+#output "aws_route_table" {
+#  value = module.subnets.aws_route_table
+#}
