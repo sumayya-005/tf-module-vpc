@@ -22,3 +22,9 @@ resource "aws_eip" "ngw" {
 #  }
 #}
 
+#resource "aws_route" "internet_gateway_route_to_public_subnets" {
+#  count  = length(???)
+#  route_table_id = element(??,count.index )
+#  destination_cidr_block = each.value.cidr_block
+#  vpc_peering_connection _id =
+#}
