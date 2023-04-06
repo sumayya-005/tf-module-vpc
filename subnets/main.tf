@@ -46,7 +46,7 @@ resource "aws_route" "peering_connection_route" {
 #}
 
 locals {
-  subnets_list = flatten([ for i,j in module.lm-subnets: concat(j.subnets)])
+  subnets_list = flatten([ for i,j in module.lm-subnets: j.subnets])
 }
 output "subnets" {
   value = local.subnets_list[*].id
