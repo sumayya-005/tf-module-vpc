@@ -8,6 +8,7 @@ module "lm-subnets" {
   subnet_availability_zones = var.subnet_availability_zones
   route_table_id    = lookup (lookup (aws_route_table.aws_route_table,each.value.name,null) ,"id" ,null)
   management_vpc = var.management_vpc
+
 }
 
 resource "aws_route_table" "route_table" {
