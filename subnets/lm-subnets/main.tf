@@ -1,16 +1,16 @@
-resource "aws_vpc_peering_connection" "management-vpc-to-env-vpc" {
-  count                  = length(local.vpc_ids)
-  peer_vpc_id            = lookup(var.management_vpc, "vpc_id",null)
-  vpc_id                 = element(local.vpc_ids,count.index)
-  auto_accept            = true
-  tags                   = local.vpc_peering_tags
+resource "aws_subnet" "main" {
+  count                  = length(local.cidr_block)
+  vpc_id                 = var.vpc_id
+  cidr_block             = element(var.cidr_block,count.index )
+  tags                   = local.subnet_tags
+  availability_zone      = element(var.subnet_availability_zones,count.index )
+
 }
 
-resource "aws_route" "route-to_default_management_route_table" {
-  for_each       = var.vpc
-  route_table_id = lookup(var.management_vpc,"route_table",null )
-  destination_cidr_block = each.value.cidr_block
-  vpc_peering_connection_id = aws_vpc_peering_connection.management-vpc-to-env-vpc. * .id[0]
+resource "aws_route_table_association" "route_table_association" {
+  count              = length(aws_subnet.main)
+  subnet_id          = element(aws_subnet.main.*.id,count.index )
+  route_table_id     = var.route_table_id
 }
 
 output "subnets"{

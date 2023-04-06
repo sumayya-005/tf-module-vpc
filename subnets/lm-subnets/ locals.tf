@@ -4,7 +4,7 @@ locals {
     ENV   = var.env
     PROJECT ="roboshop"
   }
-  vpc_peering_tags  = {
+  subnet_tags  = {
     Name   = "${var.name}-vpc-to management-vpc"
     ENV    = var.env
     PROJECT = "roboshop"
