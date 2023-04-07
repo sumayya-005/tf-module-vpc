@@ -53,13 +53,16 @@ resource "aws_route" "peering_connection_route" {
 #}
 
 
-output "subnets" {
-  value = module.lm-subnets
+#output "subnets" {
+#  value = module.lm-subnets
+#}
+
+
+output "route_tables" {
+  value = aws_route_table.aws_route_table
 }
 
-##output "route_tables" {
-##  value = aws_route_table.aws_route_table
-#}
+output "rt"
 #resource "null_resource" "test" {
 #  provisioner "local-exec" {
 #    command = "echo ${module.lm-subnets}"
