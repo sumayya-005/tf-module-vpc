@@ -4,7 +4,7 @@ module "lm-subnets" {
   source      = "./lm-subnets"
   vpc_id      = var.vpc_id[0]
   env         = var.env
-  name        =each.value.name
+  name        = each.value.name
   subnet_availability_zones = var.subnet_availability_zones
   route_table_id    = lookup (lookup (aws_route_table.aws_route_table,each.value.name,null) ,"id" ,null)
   management_vpc = var.management_vpc
@@ -14,7 +14,7 @@ module "lm-subnets" {
 resource "aws_route_table" "aws_route_table" {
   for_each = var.subnets
   vpc_id   = var.vpc_id[0]
-  tags     = {
+  tags      = {
     Name    = "${var.env}-${each.value.name}-rt"
     ENV     = var.env
     PROJECT = "roboshop"
