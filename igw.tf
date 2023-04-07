@@ -41,7 +41,7 @@ resource "aws_route" "internet_gateway_route_to_public_subnets" {
   gateway_id = aws_internet_gateway.gw[0].id
 }
 
-resource "aws_route" "internet_gateway_route_to_public_subnets" {
+resource "aws_route" "nat_gateway_route_to_public_subnets" {
   count  = length(local.private_route_tables)
   route_table_id = element(local.private_route_tables,count.index )
   destination_cidr_block = "0.0.0.0/0"
