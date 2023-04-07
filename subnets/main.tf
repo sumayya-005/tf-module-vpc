@@ -62,7 +62,13 @@ output "route_tables" {
   value = aws_route_table.aws_route_table
 }
 
-output "rt"
+output "rt" {
+  value = {
+    for k,v in aws_route_table.aws_route_table : k => v.id
+  }
+}
+
+
 #resource "null_resource" "test" {
 #  provisioner "local-exec" {
 #    command = "echo ${module.lm-subnets}"
