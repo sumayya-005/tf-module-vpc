@@ -63,9 +63,7 @@ output "route_tables" {
 }
 
 output "rt" {
-  value = {
-    for k,v in aws_route_table.aws_route_table : k => v.id
-  }
+  value = [for i,j in aws_route_table.aws_route_table: j.id]
 }
 
 
