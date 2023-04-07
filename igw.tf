@@ -15,7 +15,7 @@ resource "aws_eip" "ngw" {
 
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.ngw.id
-  subnet_id     = aws_subnet.example.id
+  subnet_id     = local.public_subnets_list [0]
 
   tags   = {
     Name = "gw NAT"
@@ -23,8 +23,10 @@ resource "aws_nat_gateway" "ngw" {
 }
 
 locals {
-  private_route_tables = [for i,j in module.private_subnets: j.rt]
-  public_route_tables = [for i,j in module.public_subnets: j.rt]
+  private_route_tables = flatten([for i,j in module.private_subnets: j.rt])
+  private_subnets_list = flatten([for i,j in module.private_subnets: j.subnets_list])
+  public_subnets_list  =  flatten([for i,j in module.public_subnets: j.subnets_list])
+  public_route_tables  = flatten([for i,j in module.private_subnets: j.rt])
 }
 
 #output "test" {
