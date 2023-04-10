@@ -6,6 +6,6 @@ output "private_subnets" {
 #value = module.public_subnets
 #}
 
-output "test" {
- value = lookup(lookup(module.public_subnets, "public", null), "subnets", null)[0].id
-}
+#output "test" {
+# value = lookup(lookup(module.public_subnets, "public", null), "subnets", null)[0].id
+#}
