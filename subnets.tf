@@ -1,5 +1,5 @@
 module "public_subnets" {
-  for_each                  = var.public_subnets
+  for_each                  = var.private_subnets
   source                    = "./subnets"
   cidr_block                = each.value.cidr_block
   vpc_id                    = aws_vpc.main.id
