@@ -1,4 +1,4 @@
-module "private_subnets" {
+module "public_subnets" {
   for_each                  = var.public_subnets
   source                    = "./subnets"
   cidr_block                = each.value.cidr_block
