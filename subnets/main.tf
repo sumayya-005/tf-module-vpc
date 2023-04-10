@@ -39,14 +39,14 @@ resource "aws_subnet" "main" {
 
 }
 
-#resource "aws_route_table" "aws_route_table" {
-#  vpc_id   = var.vpc_id
-#  tags      = {
-#    Name    = "${var.env}-${var.name}-rt"
-#    ENV     = var.env
-#    PROJECT = "roboshop"
-#  }
-#}
+resource "aws_route_table" "aws_route_table" {
+  vpc_id   = var.vpc_id
+  tags      = {
+    Name    = "${var.env}-${var.name}-rt"
+    ENV     = var.env
+    PROJECT = "roboshop"
+  }
+}
 
 #resource "aws_route_table_association" "route_table_association" {
 #  count              = length(aws_subnet.main)
