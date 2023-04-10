@@ -1,14 +1,14 @@
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
-  tags ={
+
+  tags = {
     Name = "${var.env}-igw"
   }
 }
 
 resource "aws_eip" "ngw" {
-  vpc      = true
+  vpc = true
 }
-
 
 resource "aws_nat_gateway" "ngw" {
   allocation_id = aws_eip.ngw.id
@@ -17,28 +17,3 @@ resource "aws_nat_gateway" "ngw" {
     Name = "NAT GW"
   }
 }
-
-#locals {
-#  private_route_tables = flatten([for i,j in module.private_subnets: j.rt])
-#  private_subnets_list = flatten([for i,j in module.private_subnets: j.subnets_list])
-#  public_subnets_list  =  flatten([for i,j in module.public_subnets: j.subnets_list])
-#  public_route_tables  = flatten([for i,j in module.private_subnets: j.rt])
-#}
-#
-##output "test" {
-##  value = flatten(local.public_route_tables)
-##}
-#
-#resource "aws_route" "internet_gateway_route_to_public_subnets" {
-#  count  = length(local.public_route_tables)
-#  route_table_id = element(local.public_route_tables,count.index )
-#  destination_cidr_block = "0.0.0.0/0"
-#  gateway_id = aws_internet_gateway.gw[0].id
-#}
-#
-#resource "aws_route" "nat_gateway_route_to_public_subnets" {
-#  count  = length(local.private_route_tables)
-#  route_table_id = element(local.private_route_tables,count.index )
-#  destination_cidr_block = "0.0.0.0/0"
-#  gateway_id = aws_nat_gateway.ngw[0].id
-#}
