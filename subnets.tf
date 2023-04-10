@@ -6,7 +6,7 @@ module "private_subnets" {
   env                       = var.env
   name                      = each.value.name
   subnet_availability_zones = var.subnet_availability_zones
-   gateway_id                = aws_nat_gateway.ngw.id
+   //internet_gateway_id      = aws_nat_gateway.ngw.id
 }
 
 module "public_subnets" {
@@ -19,3 +19,4 @@ module "public_subnets" {
   subnet_availability_zones = var.subnet_availability_zones
   //gateway_id                = aws_internet_gateway.igw.id
 }
+ 
