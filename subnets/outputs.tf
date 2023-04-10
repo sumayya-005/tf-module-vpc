@@ -18,3 +18,7 @@
 #output "rt" {
 #  value = [for i,j in aws_route_table.aws_route_table: j.id]
 #}
+
+output "subnets" {
+  value = "aws_subnet.main"
+}
