@@ -11,15 +11,7 @@
 #
 #}
 
-#resource "aws_route_table" "aws_route_table" {
-#  for_each = var.subnets
-#  vpc_id   = var.vpc_id[0]
-#  tags      = {
-#    Name    = "${var.env}-${each.value.name}-rt"
-#    ENV     = var.env
-#    PROJECT = "roboshop"
-#  }
-#}
+
 #
 ###output "aws_route_table" {
 ###  value = module.lm-subnets
@@ -46,6 +38,15 @@ resource "aws_subnet" "main" {
   availability_zone      = element(var.subnet_availability_zones,count.index )
 
 }
+
+#resource "aws_route_table" "aws_route_table" {
+#  vpc_id   = var.vpc_id
+#  tags      = {
+#    Name    = "${var.env}-${var.name}-rt"
+#    ENV     = var.env
+#    PROJECT = "roboshop"
+#  }
+#}
 
 #resource "aws_route_table_association" "route_table_association" {
 #  count              = length(aws_subnet.main)
