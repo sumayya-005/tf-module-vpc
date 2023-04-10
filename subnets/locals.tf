@@ -1,6 +1,6 @@
 locals {
   subnet_tags ={
-    Name  = "${var.env}-vpc"
+    Name  = "${var.name}-subnet"
     ENV   = var.env
     PROJECT ="roboshop"
   }
